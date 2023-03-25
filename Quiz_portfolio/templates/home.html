@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'quiz_css/home.css' %}">
+{% endblock %}
+{% block content %}
+<h1 class="home">クイズ掲示板</h1>
+<div class="flex">
+<div><a class="button1" href="{% url 'quiz_app:quiz_list' %}">クイズ一覧へ</a></div>
+{% if user.is_authenticated %}
+<div><a class="button2" href="{% url 'quiz_app:make_quiz' %}">クイズ作成</a></div>
+{% endif %}
+</div>
+{% endblock %}

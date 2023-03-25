@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'quiz_css/quiz_list.css' %}">
+{% endblock %}
+{% block content %}
+<div class="col-10 offset-1">
+<h2>クイズ一覧</h2>
+{% if user.is_authenticated %}
+<div><a class="button2" href="{% url 'quiz_app:make_quiz' %}">クイズ作成</a></div>
+{% endif %}
+<table class="table table-striped table-bordered">
+<thead>
+    <tr>
+        <td>クイズNo.</td>
+        <td>タイトル</td>
+        <td>作成者</td>
+        <td>クイズを編集</td>
+        <td>選択肢を編集</td>
+        <td>このクイズを削除する</td>
+    </tr>
+</thead>
+<tbody>
+{% for quiz in object_list %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'quiz_app:quiz_detail' pk=quiz.id %}">{{ quiz.title }}</a></td>
+        <td>{{ quiz.created_by.username }}</td>
+        {% if quiz.created_by.id == user.id %}
+        <td><a href="{% url 'quiz_app:edit_quiz' id=quiz.id %}">編集</a></td>
+        {% else %}
+        <td>編集</td>
+        {% endif %}
+        {% if quiz.created_by.id == user.id %}
+        <td><a href="{% url 'quiz_app:make_choice' pk=quiz.id %}">編集</a></td>
+        {% else %}
+        <td>編集</td>
+        {% endif %}
+        {% if quiz.created_by.id == user.id %}
+        <td><a href="{% url 'quiz_app:delete_quiz' pk=quiz.id %}">削除</a></td>
+        {% else %}
+        <td>削除</td>
+        {% endif %}
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

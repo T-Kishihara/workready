@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'quiz_css/quiz_detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="titles">
+        <h2>{{ object.title }}</h2>
+        <h5>作成者: {{ object.created_by.username }}</h5>
+    </div>
+    <div class="question">{{ object.sentence }}</div>
+    <div class="choices">
+        {% for choice in object.choices_set.all %}
+        <a class="choice" href="{% url 'quiz_app:result' pk=choice.id %}">{{ choice.sentence }}</a>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}

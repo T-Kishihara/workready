@@ -1,0 +1,19 @@
+.button2{
+    float:right;
+    display:block;
+    border:black solid 1px;
+    background:rgb(5, 203, 5);
+    color:white;
+    width:130px;
+    text-align: center;
+    padding:5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.button2:hover{
+    background:rgb(3, 155, 3);
+    text-decoration: none;
+    color:inherit;
+}

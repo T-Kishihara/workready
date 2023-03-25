@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'quiz_css/display_result.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if choice.is_correct %}
+    <h2 class="true">正解！</h2>
+    {% else %}
+    <h2 class="false">不正解…</h2>
+    {% endif %}
+    <div class="answer">選んだ答え: {{ choice.sentence }}</div>
+    {% if choice.description %}
+    <div>解説: {{ choice.description }}</div>
+    {% else %}
+    <div>解説: なし</div>
+    {% endif %}
+    <div class="buttons">
+    <a class="return" href="{% url 'quiz_app:quiz_detail' pk=choice.quiz.id %}">クイズに戻る</a>
+    <a class="to_list" href="{% url 'quiz_app:quiz_list' %}">クイズ一覧へ</a>
+    </div>
+</div>
+{% endblock %}

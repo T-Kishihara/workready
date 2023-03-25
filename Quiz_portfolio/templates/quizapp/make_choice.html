@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'quiz_css/make_choice.css' %}">
+{% endblock %}
+{% block content %}
+<form method="post">
+{% csrf_token %}
+{% comment %} <div class="choice-container"> {% endcomment %}
+{% comment %} {% for form in formset %}
+<div class="choice">{{ form.as_p }}</div>
+{% endfor %} {% endcomment %}
+{{ formset.as_p }}
+{% comment %} </div> {% endcomment %}
+<input type='submit' value='保存'>
+</form>
+{% endblock %}
